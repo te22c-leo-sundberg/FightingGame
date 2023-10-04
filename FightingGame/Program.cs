@@ -22,6 +22,7 @@ while (true)
     player2hp = 100;
 
     Console.WriteLine("Welcome to the pit, where fighters compete for glory, greatness and cash!");
+    Console.WriteLine($"Your current balance is {cash}");
     Console.WriteLine("What is your name, brave fighter?");
     string player1name = Console.ReadLine();
     Console.WriteLine($"{player1name} huh? Let's hope you don't die on us");
@@ -38,18 +39,27 @@ while (true)
             Console.WriteLine("Will you use a heavy or a light attack?");
             attack = Console.ReadLine().ToUpper();
         }
-
         if (attack == "LIGHT")
         {
+            int accuracy = generator.Next(1,100);
+            if (accuracy <=5)
+            {
+                Console.WriteLine($"{player1name} prepares a punch, but stumbles, falling to the ground head first knocking a tooth out. Embarrasing");
+                Console.WriteLine("Gosh, I'm cringing at the fact that this just happened. Here, take 5 cash and go seek some councelling");
+                cash =+ 5;
+            } 
+            else
+            {
             int player1damage = generator.Next(1, 20);
             player2hp -= player1damage;
             player2hp = Math.Max(0, player2hp);
             Console.WriteLine($"{player1name} decided to bust it down sexual style, creating a massive whirlwind, dealing {player1damage} damage to {player2name}");
+            }
         }
         else
         {
             int accuracy = generator.Next(10);
-            if (accuracy <= 3)
+            if (accuracy <= 4)
             {
                 Console.WriteLine($"{player1name} decided to go full throttle, throwing a gasoline boosted punch, but missed and fell on his ass.");
             }
@@ -64,6 +74,11 @@ while (true)
         int player2heavylight = generator.Next(1,2);
         if (player2heavylight == 1)
         {
+        int p2accuracy = generator.Next(1,100);
+        if (p2accuracy <= 5)
+        {
+            Console.WriteLine($"{player2name} thought he had that guy in him, but he was mistaken, so while charging his punch, he fell face first on the ground. Embarrasing");
+        }
         int player2damage = generator.Next(20);
         player1hp -= player2damage;
         player1hp = Math.Max(0, player1hp);
@@ -72,7 +87,7 @@ while (true)
         else
         {
             int p2accuracy = generator.Next(10);
-            if (p2accuracy <= 3)
+            if (p2accuracy <= 4)
             {
                 Console.WriteLine($"{player2name} decided to inject himself with adrenaline for a TRIPLE DOG DEATH BARRAGE, but overdosed and fell asleep.");
             }
@@ -102,7 +117,7 @@ while (true)
     }
     else
     {
-        Console.WriteLine("{player2name} has lost! He was unable overtake {player1name}! 100 cash has been rewarded to the winner!");
+        Console.WriteLine($"{player2name} has lost! He was unable overtake {player1name}! 100 cash has been rewarded to the winner!");
         cash += 100;
     }
 
