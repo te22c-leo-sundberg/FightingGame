@@ -23,8 +23,12 @@ while (true)
 
     Console.WriteLine("Welcome to the pit, where fighters compete for glory, greatness and cash!");
     Console.WriteLine($"Your current balance is {cash}");
-    Console.WriteLine("What is your name, brave fighter?");
-    string player1name = Console.ReadLine();
+    string player1name = " ";
+    while (player1name.Length < 3 || player1name.Length > 12 )
+    {
+        Console.WriteLine("What is your name, brave fighter?");
+        player1name = Console.ReadLine();
+    }
     Console.WriteLine($"{player1name} huh? Let's hope you don't die on us");
 
     while (player1hp > 0 && player2hp > 0)
@@ -41,19 +45,19 @@ while (true)
         }
         if (attack == "LIGHT")
         {
-            int accuracy = generator.Next(1,100);
-            if (accuracy <=5)
+            int accuracy = generator.Next(1, 100);
+            if (accuracy <= 5)
             {
                 Console.WriteLine($"{player1name} prepares a punch, but stumbles, falling to the ground head first knocking a tooth out. Embarrasing");
                 Console.WriteLine("Gosh, I'm cringing at the fact that this just happened. Here, take 5 cash and go seek some councelling");
-                cash =+ 5;
-            } 
+                cash = +5;
+            }
             else
             {
-            int player1damage = generator.Next(1, 20);
-            player2hp -= player1damage;
-            player2hp = Math.Max(0, player2hp);
-            Console.WriteLine($"{player1name} decided to bust it down sexual style, creating a massive whirlwind, dealing {player1damage} damage to {player2name}");
+                int player1damage = generator.Next(1, 20);
+                player2hp -= player1damage;
+                player2hp = Math.Max(0, player2hp);
+                Console.WriteLine($"{player1name} decided to bust it down sexual style, creating a massive whirlwind, dealing {player1damage} damage to {player2name}");
             }
         }
         else
@@ -71,18 +75,18 @@ while (true)
                 Console.WriteLine($"{player1name} decided to put his all into a punch, creating a extremely large air vacuum around his fist, then punching so hard he tore a black hole into the stomach of {player2name}, dealing {player1damage} damage.");
             }
         }
-        int player2heavylight = generator.Next(1,2);
+        int player2heavylight = generator.Next(1, 2);
         if (player2heavylight == 1)
         {
-        int p2accuracy = generator.Next(1,100);
-        if (p2accuracy <= 5)
-        {
-            Console.WriteLine($"{player2name} thought he had that guy in him, but he was mistaken, so while charging his punch, he fell face first on the ground. Embarrasing");
-        }
-        int player2damage = generator.Next(20);
-        player1hp -= player2damage;
-        player1hp = Math.Max(0, player1hp);
-        Console.WriteLine($"{player2name} decided to use his feminine features to charm {player1name} and kick him in the stomach, dealing {player2damage} damage");
+            int p2accuracy = generator.Next(1, 100);
+            if (p2accuracy <= 5)
+            {
+                Console.WriteLine($"{player2name} thought he had that guy in him, but he was mistaken, so while charging his punch, he fell face first on the ground. Embarrasing");
+            }
+            int player2damage = generator.Next(20);
+            player1hp -= player2damage;
+            player1hp = Math.Max(0, player1hp);
+            Console.WriteLine($"{player2name} decided to use his feminine features to charm {player1name} and kick him in the stomach, dealing {player2damage} damage");
         }
         else
         {
@@ -93,17 +97,17 @@ while (true)
             }
             else
             {
-            int player2damage = generator.Next(15, 30);
+                int player2damage = generator.Next(15, 30);
                 player1hp -= player2damage;
                 player1hp = Math.Max(0, player1hp);
-                Console.WriteLine($"{player2name} decided that playtime was over, and proceeded to inject 10 adrenaline syringes and do the TRIPLE DOG DEATH BARRAGE, dealing {player2damage}"); 
+                Console.WriteLine($"{player2name} decided that playtime was over, and proceeded to inject 10 adrenaline syringes and do the TRIPLE DOG DEATH BARRAGE, dealing {player2damage}");
             }
 
-        Console.WriteLine("Click any button to proceed to the next round.");
-        Console.ReadKey();
+            Console.WriteLine("Click any button to proceed to the next round.");
+            Console.ReadKey();
 
+        }
     }
-}
 
     Console.WriteLine("\n The fight is over!");
 
